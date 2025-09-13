@@ -1,0 +1,49 @@
+name: "Suivi — Finalisations SEO/UX/Perf"
+description: "Suivi des finitions et prochaines étapes du site"
+title: "[Suivi] "
+labels: ["enhancement", "documentation", "chore"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Utiliser cette fiche pour suivre les petites finitions (SEO, accessibilité, perfs) et les prochaines étapes.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Coche ce que tu souhaites inclure pour ce suivi.
+      options:
+        - label: "Formspree — remplacer `YOUR_FORM_ID` dans `contact.md`"
+        - label: "Pagination du blog — passer à `jekyll-paginate-v2` et configurer `/blog`"
+        - label: "Includes — extraire des fragments (`post-card`, `project-card`, pagination) dans `_includes/`"
+        - label: "Favicons — ajouter set complet + manifest + meta `theme-color`"
+        - label: "Images — ajouter width/height et optimiser les formats (WebP/SVG)"
+        - label: "SEO — vérifier `og:image`, avatar, compléter `site.social`"
+        - label: "Dates FR — uniformiser les mois en français si nécessaire"
+        - label: "Accessibilité — contraste, ordre de tabulation, landmarks ARIA"
+        - label: "CI — activer HTMLProofer externe (sans `--disable-external`) avec ignore list"
+        - label: "README — ajouter section exécution via Docker"
+        - label: "Archives Catégories — préparer `archive-category.html` et reconfig si réactivation"
+        - label: "Audit Lighthouse — suivre perfs/accessibilité/SEO"
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Détails / Notes
+      description: Ajoute plus de contexte si besoin.
+      placeholder: "Contexte, décisions, points ouverts, priorités…"
+    validations:
+      required: false
+
+  - type: input
+    id: links
+    attributes:
+      label: Liens utiles
+      description: Liens vers maquettes, issues, PRs ou docs.
+      placeholder: "https://…"
+    validations:
+      required: false
+
