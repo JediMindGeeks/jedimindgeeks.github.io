@@ -1,0 +1,57 @@
+# Performance optimization configuration
+optimization:
+  # Image optimization
+  images:
+    quality: 85
+    formats: ["webp", "avif", "jpg"]
+    sizes: [400, 800, 1200, 1600]
+    lazy_loading: true
+  
+  # CSS optimization
+  css:
+    minify: true
+    critical_css: true
+    purge_css: true
+  
+  # JavaScript optimization
+  js:
+    minify: true
+    bundle: true
+    tree_shaking: true
+  
+  # HTML optimization
+  html:
+    minify: true
+    remove_comments: true
+    collapse_whitespace: true
+  
+  # Caching
+  cache:
+    static_assets: "1y"
+    html_pages: "1h"
+    api_responses: "5m"
+  
+  # Compression
+  compression:
+    gzip: true
+    brotli: true
+    level: 6
+  
+  # Preloading
+  preload:
+    critical_css: true
+    critical_js: true
+    fonts: true
+    images: false
+  
+  # Resource hints
+  resource_hints:
+    dns_prefetch:
+      - "fonts.googleapis.com"
+      - "fonts.gstatic.com"
+    preconnect:
+      - "https://fonts.googleapis.com"
+      - "https://fonts.gstatic.com"
+    prefetch:
+      - "/blog"
+      - "/projects"

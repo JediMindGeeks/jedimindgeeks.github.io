@@ -1,0 +1,161 @@
+@use "variables" as *;
+// Container
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Header
+.header {
+  background-color: $bg-color;
+  border-bottom: 1px solid $border-color;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md 0;
+}
+
+.nav-brand {
+  .nav-logo {
+    font-size: $font-size-xl;
+    font-weight: 700;
+    color: $text-color;
+  }
+}
+
+.nav-menu {
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: $spacing-lg;
+  }
+  
+  .nav-link {
+    color: $text-color;
+    font-weight: 500;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius;
+    transition: $transition;
+    
+    &:hover,
+    &.active {
+      color: $primary-color;
+      background-color: rgba($primary-color, 0.1);
+    }
+  }
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  
+  span {
+    width: 25px;
+    height: 3px;
+    background-color: $text-color;
+    margin: 3px 0;
+    transition: $transition;
+  }
+}
+
+// Main content
+.main {
+  min-height: calc(100vh - 200px);
+}
+
+// Footer
+.footer {
+  background-color: $bg-light;
+  border-top: 1px solid $border-color;
+  margin-top: $spacing-3xl;
+  padding: $spacing-2xl 0 $spacing-lg;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-xl;
+  margin-bottom: $spacing-xl;
+}
+
+.footer-section {
+  h3, h4 {
+    margin-bottom: $spacing-md;
+    color: $text-color;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      margin-bottom: $spacing-sm;
+      
+      a {
+        color: $text-light;
+        transition: $transition;
+        
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: $spacing-md;
+  
+  a {
+    color: $text-light;
+    transition: $transition;
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+  color: $text-light;
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .nav-menu {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $bg-color;
+    border-top: 1px solid $border-color;
+    padding: $spacing-lg;
+    transform: translateY(-100%);
+    transition: $transition;
+    
+    &.active {
+      transform: translateY(0);
+    }
+    
+    .nav-list {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+}

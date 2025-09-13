@@ -1,0 +1,102 @@
+# Projects metadata
+projects:
+  # Defaults
+  defaults:
+    layout: "project"
+    author: "JediMindGeeks"
+    date: "2025-09-13"
+    show_excerpts: true
+    share: true
+    featured: false
+  
+  # Project types
+  types:
+    web:
+      layout: "project"
+      category: "Développement Web"
+      featured: true
+    
+    mobile:
+      layout: "project"
+      category: "Développement Mobile"
+      featured: true
+    
+    desktop:
+      layout: "project"
+      category: "Développement Desktop"
+      featured: false
+    
+    open_source:
+      layout: "project"
+      category: "Open Source"
+      featured: true
+    
+    personal:
+      layout: "project"
+      category: "Projets Personnels"
+      featured: false
+  
+  # Project status
+  status:
+    completed: "Terminé"
+    in_progress: "En cours"
+    planned: "Planifié"
+    archived: "Archivé"
+  
+  # Technologies
+  technologies:
+    frontend:
+      - "HTML5"
+      - "CSS3"
+      - "JavaScript"
+      - "TypeScript"
+      - "React"
+      - "Vue.js"
+      - "Angular"
+      - "Sass"
+      - "Less"
+      - "Webpack"
+      - "Vite"
+      - "Parcel"
+    
+    backend:
+      - "Node.js"
+      - "Express"
+      - "Python"
+      - "Django"
+      - "Flask"
+      - "PHP"
+      - "Laravel"
+      - "Symfony"
+      - "Java"
+      - "Spring Boot"
+      - "C#"
+      - ".NET"
+    
+    database:
+      - "PostgreSQL"
+      - "MySQL"
+      - "MongoDB"
+      - "Redis"
+      - "Elasticsearch"
+      - "SQLite"
+    
+    devops:
+      - "Docker"
+      - "Kubernetes"
+      - "AWS"
+      - "Azure"
+      - "GCP"
+      - "GitHub Actions"
+      - "GitLab CI"
+      - "Jenkins"
+    
+    tools:
+      - "Git"
+      - "GitHub"
+      - "GitLab"
+      - "VS Code"
+      - "IntelliJ IDEA"
+      - "Figma"
+      - "Adobe XD"
+      - "Sketch"

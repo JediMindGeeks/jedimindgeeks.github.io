@@ -1,0 +1,54 @@
+# Deployment configuration
+deployment:
+  # GitHub Pages
+  github_pages:
+    enabled: true
+    branch: "main"
+    path: "/"
+    custom_domain: false
+    https: true
+  
+  # Build settings
+  build:
+    command: "bundle exec jekyll build"
+    output_directory: "_site"
+    clean: true
+    incremental: false
+  
+  # Environment variables
+  environment:
+    JEKYLL_ENV: "production"
+    NODE_ENV: "production"
+  
+  # Dependencies
+  dependencies:
+    ruby: "3.1"
+    bundler: "2.4"
+    jekyll: "4.3.0"
+  
+  # Plugins
+  plugins:
+    - jekyll-feed
+    - jekyll-sitemap
+    - jekyll-seo-tag
+    - jekyll-paginate
+    - jekyll-archives
+  
+  # Exclude files
+  exclude:
+    - Gemfile
+    - Gemfile.lock
+    - node_modules
+    - vendor
+    - README.md
+    - PLAN_DEVELOPPEMENT.md
+    - .gitignore
+    - .github
+    - _data/performance.yml
+    - _data/deployment.yml
+  
+  # Include files
+  include:
+    - _redirects
+    - .htaccess
+    - CNAME

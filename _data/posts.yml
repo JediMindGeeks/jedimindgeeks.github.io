@@ -1,0 +1,65 @@
+# Posts metadata
+posts:
+  # Defaults
+  defaults:
+    layout: "post"
+    author: "JediMindGeeks"
+    date: "2025-09-13"
+    categories: ["Général"]
+    tags: ["bienvenue", "site", "jekyll"]
+    excerpt_separator: "<!--more-->"
+    show_excerpts: true
+    read_time: true
+    share: true
+    comments: false
+  
+  # Post types
+  types:
+    tutorial:
+      layout: "post"
+      categories: ["Tutoriels"]
+      show_excerpts: true
+      read_time: true
+      share: true
+    
+    project:
+      layout: "post"
+      categories: ["Projets"]
+      show_excerpts: true
+      read_time: true
+      share: true
+    
+    technology:
+      layout: "post"
+      categories: ["Technologies"]
+      show_excerpts: true
+      read_time: true
+      share: true
+    
+    general:
+      layout: "post"
+      categories: ["Général"]
+      show_excerpts: true
+      read_time: true
+      share: true
+  
+  # Reading time calculation
+  reading_time:
+    words_per_minute: 200
+    include_seconds: false
+    format: "minute"
+  
+  # Social sharing
+  social_sharing:
+    enabled: true
+    platforms:
+      - twitter
+      - linkedin
+      - email
+    twitter:
+      username: "jedimindgeeks"
+      via: "jedimindgeeks"
+    linkedin:
+      title: "{{ page.title }}"
+      summary: "{{ page.excerpt | strip_html | truncate: 200 }}"
+      source: "JediMindGeeks"

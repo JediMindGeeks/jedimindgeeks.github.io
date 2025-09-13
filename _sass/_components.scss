@@ -1,0 +1,171 @@
+@use "sass:color";
+@use "variables" as *;
+// Hero section
+.hero {
+  background: linear-gradient(135deg, $primary-color 0%, color.adjust($primary-color, $lightness: -20%) 100%);
+  color: white;
+  padding: $spacing-3xl 0;
+  text-align: center;
+  
+  .hero-title {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-md;
+    color: white;
+  }
+  
+  .hero-subtitle {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-2xl;
+    opacity: 0.9;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius;
+  font-weight: 500;
+  text-align: center;
+  transition: $transition;
+  cursor: pointer;
+  border: 2px solid transparent;
+  
+  &.btn-primary {
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-secondary {
+    background-color: $secondary-color;
+    color: white;
+    
+    &:hover {
+      background-color: color.adjust($secondary-color, $lightness: -10%);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.btn-outline {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+    
+    &:hover {
+      background-color: white;
+      color: $primary-color;
+    }
+  }
+}
+
+// Cards
+.feature-card, .post-card {
+  background-color: $bg-color;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+  transition: $transition;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: $spacing-md;
+}
+
+.post-card {
+  h3 {
+    margin-bottom: $spacing-sm;
+    
+    a {
+      color: $text-color;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .post-meta {
+    color: $text-light;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-md;
+  }
+  
+  .read-more {
+    color: $primary-color;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Grids
+.features-grid, .posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-xl;
+  margin-bottom: $spacing-2xl;
+}
+
+// Sections
+.features, .recent-posts {
+  padding: $spacing-3xl 0;
+  
+  h2 {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+  }
+}
+
+.features {
+  background-color: $bg-light;
+}
+
+// Text utilities
+.text-center {
+  text-align: center;
+}
+
+// Responsive adjustments
+@media (max-width: $breakpoint-md) {
+  .hero {
+    padding: $spacing-2xl 0;
+    
+    .hero-title {
+      font-size: $font-size-3xl;
+    }
+    
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  .features-grid, .posts-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+  
+  .feature-card, .post-card {
+    padding: $spacing-lg;
+  }
+}

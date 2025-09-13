@@ -1,0 +1,55 @@
+# Collections configuration
+posts:
+  output: true
+  permalink: "/:year/:month/:day/:title/"
+  sort_by: date
+  sort_order: desc
+  limit: 10
+
+projects:
+  output: true
+  permalink: "/projects/:name/"
+  sort_by: date
+  sort_order: desc
+  limit: 20
+
+# Categories
+categories:
+  - name: "Développement Web"
+    description: "Articles sur le développement web et les technologies frontend/backend"
+    slug: "developpement-web"
+  - name: "Tutoriels"
+    description: "Tutoriels et guides pratiques"
+    slug: "tutoriels"
+  - name: "Projets"
+    description: "Présentation de projets et réalisations"
+    slug: "projets"
+  - name: "Technologies"
+    description: "Articles sur les nouvelles technologies et outils"
+    slug: "technologies"
+  - name: "Général"
+    description: "Articles généraux et réflexions"
+    slug: "general"
+
+# Tags
+tags:
+  - name: "Jekyll"
+    description: "Générateur de site statique"
+  - name: "GitHub Pages"
+    description: "Hébergement de sites statiques"
+  - name: "Sass"
+    description: "Préprocesseur CSS"
+  - name: "JavaScript"
+    description: "Langage de programmation"
+  - name: "HTML5"
+    description: "Langage de balisage"
+  - name: "CSS3"
+    description: "Feuilles de style"
+  - name: "Responsive"
+    description: "Design adaptatif"
+  - name: "SEO"
+    description: "Optimisation pour les moteurs de recherche"
+  - name: "Performance"
+    description: "Optimisation des performances"
+  - name: "Accessibilité"
+    description: "Accessibilité web"

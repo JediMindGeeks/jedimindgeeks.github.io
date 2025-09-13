@@ -1,0 +1,91 @@
+# Site settings
+title: "JediMindGeeks"
+description: "Site personnel et portfolio technique - Développement, technologies et projets"
+author: "JediMindGeeks"
+email: "contact@jedimindgeeks.com"
+baseurl: "" # pour GitHub Pages
+url: "https://jedimindgeeks.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
+timezone: Europe/Paris
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-archives
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "JediMindGeeks"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Pagination
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# Archives
+jekyll-archives:
+  enabled:
+    - year
+    - tags
+  layouts:
+    year: archive-year
+    tag: archive-tag
+  permalinks:
+    year: '/:year/'
+    tag: '/tag/:name/'
+
+# SEO
+seo:
+  type: "Person"
+  name: "JediMindGeeks"
+  description: \Développeur passionné par les technologies web et linnovation\
+  url: "https://jedimindgeeks.github.io"
+  image: "/assets/images/avatar.svg"
+  twitter:
+    username: "jedimindgeeks"
+  social:
+    name: "JediMindGeeks"
+    links:
+      - "https://github.com/jedimindgeeks"
+      - "https://linkedin.com/in/jedimindgeeks"
+
+# Exclude
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - PLAN_DEVELOPPEMENT.md
+
+
+

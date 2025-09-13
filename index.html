@@ -1,0 +1,68 @@
+---
+layout: default
+title: "Accueil"
+description: "Bienvenue sur le site de JediMindGeeks - Développeur passionné par les technologies web"
+---
+
+<div class="hero">
+  <div class="container">
+    <h1 class="hero-title">{{ site.title }}</h1>
+    <p class="hero-subtitle">{{ site.description }}</p>
+    <div class="hero-actions">
+      <a href="/about" class="btn btn-primary">À propos</a>
+      <a href="/projects" class="btn btn-secondary">Projets</a>
+      <a href="/blog" class="btn btn-outline">Blog</a>
+    </div>
+  </div>
+  
+</div>
+
+<section class="features">
+  <div class="container">
+    <h2>Ce que je fais</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">💻</div>
+        <h3>Développement Web</h3>
+        <p>Création d'applications web modernes avec les dernières technologies</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">🚀</div>
+        <h3>Innovation</h3>
+        <p>Exploration de nouvelles technologies et méthodes de développement</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true">📚</div>
+        <h3>Partage</h3>
+        <p>Documentation et partage de connaissances techniques</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recent-posts">
+  <div class="container">
+    <h2>Articles récents</h2>
+    <div class="posts-grid">
+      {% for post in site.posts limit:3 %}
+      <article class="post-card">
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        <p class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%d/%m/%Y" }}
+          </time>
+          {% if post.tags %}
+            &middot; {{ post.tags | join: ", " }}
+          {% endif %}
+        </p>
+        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+        <a href="{{ post.url }}" class="read-more">Lire la suite</a>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="text-center">
+      <a href="/blog" class="btn btn-primary">Voir tous les articles</a>
+    </div>
+  </div>
+</section>
+

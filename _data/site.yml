@@ -1,0 +1,40 @@
+# Site data
+name: "JediMindGeeks"
+tagline: "Développeur passionné par les technologies web"
+description: "Site personnel et portfolio technique - Développement, technologies et projets"
+author: "JediMindGeeks"
+email: "contact@jedimindgeeks.com"
+url: "https://jedimindgeeks.github.io"
+baseurl: ""
+
+# Social links
+social:
+  github: "https://github.com/jedimindgeeks"
+  linkedin: "https://linkedin.com/in/jedimindgeeks"
+  twitter: "https://twitter.com/jedimindgeeks"
+  email: "mailto:contact@jedimindgeeks.com"
+
+# Navigation
+navigation:
+  - title: "Accueil"
+    url: "/"
+  - title: "À propos"
+    url: "/about"
+  - title: "Projets"
+    url: "/projects"
+  - title: "Blog"
+    url: "/blog"
+  - title: "Contact"
+    url: "/contact"
+
+# Footer
+footer:
+  copyright: "JediMindGeeks"
+  year: 2025
+  links:
+    - title: "Mentions légales"
+      url: "/legal"
+    - title: "Politique de confidentialité"
+      url: "/privacy"
+    - title: "CGU"
+      url: "/terms"

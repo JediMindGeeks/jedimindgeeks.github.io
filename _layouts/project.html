@@ -1,0 +1,173 @@
+---
+layout: default
+---
+
+<article class="project">
+  <header class="project-header">
+    <div class="container">
+      <h1 class="project-title">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="project-description">{{ page.description }}</p>
+      {% endif %}
+      {% if page.image %}
+      <div class="project-image">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" loading="lazy" decoding="async">
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="project-content">
+    <div class="container">
+      <div class="project-details">
+        {% if page.technologies %}
+        <div class="project-tech">
+          <h3>Technologies utilisées</h3>
+          <div class="tech-tags">
+            {% for tech in page.technologies %}
+            <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        
+        {% if page.github or page.demo %}
+        <div class="project-links">
+          <h3>Liens</h3>
+          <div class="link-buttons">
+            {% if page.github %}
+            <a href="{{ page.github }}" target="_blank" rel="noopener" class="btn btn-outline">
+              <i class="icon-github"></i> Code source
+            </a>
+            {% endif %}
+            {% if page.demo %}
+            <a href="{{ page.demo }}" target="_blank" rel="noopener" class="btn btn-primary">
+              <i class="icon-external"></i> Voir le projet
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="project-body">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+.project-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, color-mix(in srgb, var(--primary-color) 80%, black) 100%);
+  color: white;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.project-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.project-description {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.project-image {
+  margin-top: 2rem;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.project-tech h3, .project-links h3 {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.link-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-body {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.project-body h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.project-body h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+}
+
+.project-body ul, .project-body ol {
+  margin-bottom: 1.5rem;
+}
+
+.project-body li {
+  margin-bottom: 0.5rem;
+}
+
+.project-body blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .project-title {
+    font-size: 2rem;
+  }
+  
+  .project-details {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .link-buttons {
+    flex-direction: column;
+  }
+}
+</style>

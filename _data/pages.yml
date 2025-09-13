@@ -1,0 +1,65 @@
+# Pages metadata
+pages:
+  home:
+    title: "Accueil"
+    description: "Bienvenue sur le site de JediMindGeeks - Développeur passionné par les technologies web"
+    keywords: "développement web, portfolio, blog technique, Jekyll, GitHub Pages"
+    priority: 1.0
+    changefreq: "weekly"
+  
+  about:
+    title: "À propos"
+    description: "Découvrez mon parcours, mes compétences et ma passion pour le développement web"
+    keywords: "à propos, parcours, compétences, développeur web, portfolio"
+    priority: 0.8
+    changefreq: "monthly"
+  
+  projects:
+    title: "Projets"
+    description: "Découvrez mes projets techniques et réalisations dans le développement web"
+    keywords: "projets, portfolio, réalisations, développement web, technologies"
+    priority: 0.9
+    changefreq: "weekly"
+  
+  blog:
+    title: "Blog"
+    description: "Articles techniques, tutoriels et réflexions sur le développement web"
+    keywords: "blog, articles, tutoriels, développement web, technologies, techniques"
+    priority: 0.9
+    changefreq: "weekly"
+  
+  skills:
+    title: "Compétences"
+    description: "Mes compétences techniques et outils de développement"
+    keywords: "compétences, technologies, outils, développement, expertise"
+    priority: 0.7
+    changefreq: "monthly"
+  
+  contact:
+    title: "Contact"
+    description: "Contactez-moi pour discuter de vos projets ou collaborations"
+    keywords: "contact, collaboration, projets, développement web, freelance"
+    priority: 0.7
+    changefreq: "monthly"
+  
+  archives:
+    title: "Archives"
+    description: "Tous les articles du blog organisés par date"
+    keywords: "archives, articles, blog, historique"
+    priority: 0.6
+    changefreq: "monthly"
+  
+  tags:
+    title: "Tags"
+    description: "Parcourez les articles par tag"
+    keywords: "tags, articles, blog, mots-clés"
+    priority: 0.6
+    changefreq: "monthly"
+  
+  # Error pages
+  error_404:
+    title: "Page non trouvée"
+    description: "Désolé, la page que vous recherchez n'existe pas ou a été déplacée"
+    keywords: "404, erreur, page non trouvée"
+    priority: 0.1
+    changefreq: "never"

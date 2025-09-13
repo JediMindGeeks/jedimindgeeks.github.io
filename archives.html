@@ -1,0 +1,136 @@
+---
+layout: default
+title: "Archives"
+description: "Tous les articles du blog organisés par date"
+---
+
+<div class="archives-hero">
+  <div class="container">
+    <h1>Archives</h1>
+    <p class="lead">Parcourez tous les articles du blog organisés par date</p>
+  </div>
+</div>
+
+<section class="archives-content">
+  <div class="container">
+    <div class="archives-grid">
+      <!-- Archives par année -->
+      <div class="archive-section">
+        <h2>Par année</h2>
+        <div class="archive-list">
+          {% assign years = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+          {% for year in years %}
+          <div class="archive-item">
+            <a href="{{ year.name | prepend: '/year/' | relative_url }}" class="archive-link">
+              <span class="archive-year">{{ year.name }}</span>
+              <span class="archive-count">{{ year.items.size }} article{{ year.items.size | pluralize }}</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Sections mois et catégorie supprimées (non utilisées) -->
+
+      <!-- Archives par tag -->
+      <div class="archive-section">
+        <h2>Par tag</h2>
+        <div class="archive-list">
+          {% assign tags = site.posts | map: 'tags' | flatten | uniq | sort %}
+          {% for tag in tags %}
+          {% assign tag_posts = site.posts | where: 'tags', tag %}
+          <div class="archive-item">
+            <a href="{{ tag | slugify | prepend: '/tag/' | relative_url }}" class="archive-link">
+              <span class="archive-tag">{{ tag }}</span>
+              <span class="archive-count">{{ tag_posts.size }} article{{ tag_posts.size | pluralize }}</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.archives-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, color-mix(in srgb, var(--primary-color) 80%, black) 100%);
+  color: white;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.archives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.archive-section {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+}
+
+.archive-section h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.archive-item {
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 0;
+}
+
+.archive-item:last-child {
+  border-bottom: none;
+}
+
+.archive-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: var(--transition);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.archive-link:hover {
+  background-color: var(--bg-light);
+  color: var(--primary-color);
+}
+
+.archive-year, .archive-month, .archive-category, .archive-tag {
+  font-weight: 500;
+}
+
+.archive-count {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  background: var(--bg-light);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .archives-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .archive-section {
+    padding: 1.5rem;
+  }
+}
+</style>

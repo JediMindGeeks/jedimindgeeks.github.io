@@ -1,0 +1,63 @@
+# SEO configuration
+seo:
+  # Meta tags
+  meta:
+    title: "JediMindGeeks - Développeur Web"
+    description: "Site personnel et portfolio technique - Développement, technologies et projets"
+    keywords: "développement web, portfolio, blog technique, Jekyll, GitHub Pages"
+    author: "JediMindGeeks"
+    image: "/assets/images/og-image.jpg"
+    type: "website"
+    locale: "fr_FR"
+  
+  # Open Graph
+  og:
+    site_name: "JediMindGeeks"
+    type: "website"
+    locale: "fr_FR"
+    image_width: 1200
+    image_height: 630
+  
+  # Twitter Card
+  twitter:
+    card: "summary_large_image"
+    site: "@jedimindgeeks"
+    creator: "@jedimindgeeks"
+    image: "/assets/images/twitter-card.jpg"
+  
+  # Structured Data
+  structured_data:
+    organization:
+      name: "JediMindGeeks"
+      url: "https://jedimindgeeks.github.io"
+      logo: "https://jedimindgeeks.github.io/assets/images/logo.png"
+      sameAs:
+        - "https://github.com/jedimindgeeks"
+        - "https://linkedin.com/in/jedimindgeeks"
+        - "https://twitter.com/jedimindgeeks"
+    
+    person:
+      name: "JediMindGeeks"
+      jobTitle: "Développeur Web"
+      url: "https://jedimindgeeks.github.io"
+      sameAs:
+        - "https://github.com/jedimindgeeks"
+        - "https://linkedin.com/in/jedimindgeeks"
+        - "https://twitter.com/jedimindgeeks"
+  
+  # Sitemap
+  sitemap:
+    changefreq: "monthly"
+    priority: 0.5
+    exclude:
+      - "/404.html"
+      - "/robots.txt"
+  
+  # Robots
+  robots:
+    user_agent: "*"
+    allow: "/"
+    disallow:
+      - "/admin/"
+      - "/private/"
+    sitemap: "https://jedimindgeeks.github.io/sitemap.xml"
