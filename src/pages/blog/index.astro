@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Articles techniques sur le développement web, les bonnes pratiques et les nouvelles technologies."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Articles, tutoriels et retours d'expérience sur le développement.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      {allTags.length > 0 && (
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;">
+          <a href="/blog" class="tag tag--active">Tous</a>
+          {allTags.map((tag) => (
+            <a href={`/tags/${tag}`} class="tag">{tag}</a>
+          ))}
+        </div>
+      )}
+
+      {posts.length > 0 ? (
+        <div class="grid-3">
+          {posts.map((post) => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <div class="empty-state__icon">✍️</div>
+          <h3>Aucun article pour l'instant</h3>
+          <p>Les articles arrivent bientôt. Revenez dans peu de temps !</p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

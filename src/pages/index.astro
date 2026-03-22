@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const recentPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="Accueil"
+  description="Portfolio technique et blog de JediMindGeeks — Développement, technologies et projets."
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">👋 Bienvenue</span>
+        <h1 class="hero__title">
+          Développeur passionné<br />
+          <span class="highlight">par les bonnes pratiques</span>
+        </h1>
+        <p class="hero__description">
+          Je conçois et développe des applications web et mobiles en mettant l'accent sur
+          la performance, la qualité du code et l'expérience utilisateur.
+        </p>
+        <div class="hero__actions">
+          <a href="/projects" class="btn btn--primary">Voir mes projets</a>
+          <a href="/blog" class="btn btn--ghost">Lire le blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Posts -->
+  {recentPosts.length > 0 && (
+    <section class="section" style="background: var(--bg-alt);">
+      <div class="container">
+        <div class="section__header">
+          <h2>Derniers articles</h2>
+          <p>Réflexions, tutoriels et retours d'expérience sur le développement.</p>
+        </div>
+        <div class="grid-3">
+          {recentPosts.map((post) => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="/blog" class="btn btn--outline">Tous les articles →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Featured Projects -->
+  {featuredProjects.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section__header">
+          <h2>Projets récents</h2>
+          <p>Quelques projets sur lesquels j'ai travaillé dernièrement.</p>
+        </div>
+        <div class="grid-3">
+          {featuredProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="/projects" class="btn btn--outline">Tous les projets →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="section" style="background: var(--bg-alt);">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <h2>Travaillons ensemble</h2>
+        <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+          Vous avez un projet en tête ? Je suis disponible pour des collaborations,
+          du freelance ou juste pour échanger.
+        </p>
+        <a href="/contact" class="btn btn--primary">Me contacter</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

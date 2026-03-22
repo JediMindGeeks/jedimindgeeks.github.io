@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Projets"
+  description="Découvrez mes projets de développement web, mobile et autres réalisations techniques."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Projets</h1>
+      <p>Une sélection de projets sur lesquels j'ai travaillé.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      {projects.length > 0 ? (
+        <div class="grid-3">
+          {projects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <div class="empty-state__icon">🚀</div>
+          <h3>Projets à venir</h3>
+          <p>Les projets seront bientôt disponibles ici.</p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

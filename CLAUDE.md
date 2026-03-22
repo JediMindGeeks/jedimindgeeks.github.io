@@ -6,64 +6,97 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Install dependencies
-bundle install
+npm install
 
-# Local development server with live reload (http://localhost:4000)
-bundle exec jekyll serve --livereload
+# Local development server (http://localhost:4321)
+npm run dev
 
 # Build static site
-bundle exec jekyll build --safe
+npm run build
 
-# HTML validation (run after build)
-bundle exec htmlproofer ./_site --disable-external --check-html --allow-hash-href
+# Preview production build
+npm run preview
 ```
 
 ## Architecture
 
-This is a **Jekyll static site** (personal portfolio + French-language technical blog) hosted on GitHub Pages.
+This is an **Astro static site** (personal portfolio + French-language technical blog) hosted on **Cloudflare Pages**.
 
 ### Content Collections
 
-- `_posts/` — Blog articles, named `YYYY-MM-DD-title.md`
-- `_projects/` — Portfolio project pages
-- Static pages: `index.html`, `about.md`, `blog.md`, `skills.md`, `contact.md`, `projects.md`
+- `src/content/blog/` — Blog articles (`slug.md` or `slug.mdx`)
+- `src/content/projects/` — Portfolio project pages
+- `src/content/config.ts` — Zod schemas for all collections
+
+### Frontmatter schemas
+
+**Blog posts:**
+```yaml
+---
+title: "Article title"
+description: "Short description"
+date: 2026-01-15
+tags: ["tag1", "tag2"]
+draft: false          # optional, defaults to false
+---
+```
+
+**Projects:**
+```yaml
+---
+title: "Project name"
+description: "Short description"
+date: 2026-01-15
+tags: ["React", "TypeScript"]
+github: "https://github.com/..."   # optional
+demo: "https://..."                 # optional
+featured: false                     # optional
+---
+```
 
 ### Layout System
 
-- `_layouts/default.html` — Base layout (header, nav, footer)
-- `_layouts/post.html` — Blog post with sharing buttons and prev/next navigation
-- `_layouts/project.html` — Project showcase
-- `_layouts/archive-*.html` — Tag and year archive pages
+- `src/layouts/BaseLayout.astro` — Base layout (header, nav, footer, SEO)
+- `src/layouts/BlogPost.astro` — Blog post with prev/next navigation
+- `src/layouts/Project.astro` — Project showcase with links
+
+### Pages
+
+- `src/pages/index.astro` — Homepage
+- `src/pages/blog/index.astro` — Blog listing
+- `src/pages/blog/[slug].astro` — Individual post
+- `src/pages/projects/index.astro` — Projects listing
+- `src/pages/projects/[slug].astro` — Individual project
+- `src/pages/tags/[tag].astro` — Tag archive
+- `src/pages/about.astro`, `skills.astro`, `contact.astro`
+- `src/pages/rss.xml.js` — RSS feed
+- `src/pages/404.astro` — Not found
 
 ### Styling
 
-SCSS partials in `_sass/`:
-- `_variables.scss` — Colors, spacing, breakpoints, typography (edit this for theme changes)
-- `_base.scss`, `_layout.scss`, `_components.scss`, `_utilities.scss`
+Single SCSS file: `src/styles/global.scss`
 
-Key design tokens:
-- Primary: `#2563eb`, Secondary: `#64748b`, Accent: `#f59e0b`
-- Breakpoints: 640px, 768px, 1024px, 1280px
-- Font: Inter
+Key design tokens (CSS custom properties):
+- `--primary: #2563eb`
+- `--secondary: #64748b`
+- `--accent: #f59e0b`
+- Font: Inter (Google Fonts)
 
-### Data Files (`_data/`)
+### Deployment — Cloudflare Pages
 
-- `site.yml` — Site metadata and navigation structure
-- `theme.yml` — Theme color and typography variables
-- `posts.yml` — Post metadata defaults and social sharing config
+Connect the GitHub repo at https://dash.cloudflare.com → Pages → Create a project
 
-### CI/CD
+Build settings:
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node version: `22`
 
-GitHub Actions (`.github/workflows/jekyll.yml`) builds and deploys on push to `main`:
-1. Setup Ruby 3.1
-2. `bundle exec jekyll build --safe`
-3. HTMLProofer validation
-4. Deploy via `peaceiris/actions-gh-pages@v3`
+GitHub Actions (`.github/workflows/ci.yml`) validates the build on every push.
 
-### Key Plugins
+### Key Dependencies
 
-`jekyll-feed`, `jekyll-sitemap`, `jekyll-seo-tag`, `jekyll-paginate` (5 posts/page), `jekyll-archives` (year + tag archives), `jekyll-admin` (dev only)
-
-### JavaScript
-
-Vanilla JS only — mobile nav toggle, smooth scrolling, scroll-triggered header effects. No frameworks.
+- `astro` ^4.16 — Static site generator
+- `@astrojs/mdx` — MDX support for richer blog posts
+- `@astrojs/sitemap` — Automatic sitemap generation
+- `@astrojs/rss` — RSS feed generation
+- `sass` — SCSS compilation
