@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skillCategories = [
+  {
+    icon: '🌐',
+    name: 'Front-end',
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Vue.js', 'Astro', 'Next.js'],
+  },
+  {
+    icon: '⚙️',
+    name: 'Back-end',
+    skills: ['Node.js', 'Python', 'Express', 'FastAPI', 'REST API', 'GraphQL'],
+  },
+  {
+    icon: '🗄️',
+    name: 'Bases de données',
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'SQLite'],
+  },
+  {
+    icon: '☁️',
+    name: 'DevOps & Cloud',
+    skills: ['Docker', 'Git', 'GitHub Actions', 'CI/CD', 'Cloudflare', 'Vercel'],
+  },
+  {
+    icon: '📱',
+    name: 'Mobile',
+    skills: ['React Native', 'Flutter', 'PWA'],
+  },
+  {
+    icon: '🛠️',
+    name: 'Outils',
+    skills: ['VS Code', 'Linux', 'Bash', 'npm', 'Webpack', 'Vite', 'Figma'],
+  },
+];
+---
+
+<BaseLayout
+  title="Compétences"
+  description="Mes compétences techniques : front-end, back-end, bases de données, DevOps et plus."
+>
+  <div class="page-header">
+    <div class="container">
+      <h1>Compétences</h1>
+      <p>Technologies et outils avec lesquels je travaille au quotidien.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="skills-grid">
+        {skillCategories.map((category) => (
+          <div class="skills-category">
+            <div class="skills-category__header">
+              <span class="skills-category__header-icon" aria-hidden="true">
+                {category.icon}
+              </span>
+              <h3>{category.name}</h3>
+            </div>
+            <div class="skills-category__items">
+              {category.skills.map((skill) => (
+                <span class="skill-item">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

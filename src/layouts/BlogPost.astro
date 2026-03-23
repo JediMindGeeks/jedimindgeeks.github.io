@@ -1,0 +1,72 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  post: CollectionEntry<'blog'>;
+  prev?: CollectionEntry<'blog'>;
+  next?: CollectionEntry<'blog'>;
+}
+
+const { post, prev, next } = Astro.props;
+const { title, description, date, tags } = post.data;
+
+const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(date);
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <div class="post-header">
+      <div class="container container--narrow">
+        <div class="post-header__meta">
+          <time datetime={date.toISOString()}>{formattedDate}</time>
+          {tags.length > 0 && (
+            <>
+              <span aria-hidden="true">·</span>
+              <div class="post-header__tags">
+                {tags.map((tag) => (
+                  <a href={`/tags/${tag}`} class="tag">{tag}</a>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+        <h1>{title}</h1>
+        {description && <p class="post-header__description">{description}</p>}
+      </div>
+    </div>
+
+    <div class="container container--narrow section">
+      <div class="prose">
+        <slot />
+      </div>
+
+      {(prev || next) && (
+        <nav class="post-nav" aria-label="Navigation entre articles">
+          {prev ? (
+            <a href={`/blog/${prev.slug}`} class="post-nav__item post-nav__item--prev">
+              <span>← Article précédent</span>
+              <strong>{prev.data.title}</strong>
+            </a>
+          ) : (
+            <div></div>
+          )}
+          {next && (
+            <a href={`/blog/${next.slug}`} class="post-nav__item post-nav__item--next">
+              <span>Article suivant →</span>
+              <strong>{next.data.title}</strong>
+            </a>
+          )}
+        </nav>
+      )}
+
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+        <a href="/blog" class="btn btn--ghost">← Retour au blog</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const allTags = [...new Set(posts.flatMap((p) => p.data.tags))];
+
+  return allTags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Tag : ${tag}`}
+  description={`Tous les articles tagués "${tag}" sur JediMindGeeks.`}
+>
+  <div class="page-header">
+    <div class="container">
+      <div style="margin-bottom: 0.75rem;">
+        <a href="/blog" class="text-muted text-sm">← Retour au blog</a>
+      </div>
+      <h1>
+        <span style="color: var(--text-muted); font-weight: 400; font-size: 0.6em;">tag :</span>
+        {tag}
+      </h1>
+      <p>{posts.length} article{posts.length > 1 ? 's' : ''}</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="grid-3">
+        {posts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
