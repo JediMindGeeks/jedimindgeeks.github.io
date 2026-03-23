@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://jedimindgeeks.pages.dev',
+  site: 'https://jedimindgeeks.github.io',
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
